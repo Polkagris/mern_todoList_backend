@@ -9,7 +9,7 @@ const userSchema = new Schema(
       unique: true,
       trim: true,
       minlength: 3,
-      max: 255
+      max: 255,
     },
     email: {
       type: String,
@@ -17,25 +17,24 @@ const userSchema = new Schema(
       unique: true,
       trim: true,
       minlength: 3,
-      max: 255
+      max: 255,
     },
     password: {
       type: String,
       required: true,
-      unique: true,
       trim: true,
       minlength: 6,
-      max: 1024
+      max: 1024,
     },
     todos: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Todo"
-      }
-    ]
+        ref: "Todo",
+      },
+    ],
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 

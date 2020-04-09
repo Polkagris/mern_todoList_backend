@@ -1,34 +1,34 @@
 const router = require("express").Router();
-const User = require("../models/user.model");
+let User = require("../models/user.model");
 
 // GET
 router.route("/").get(async (req, res) => {
-  User.find()
-    .then((users) => res.json(users))
-    .catch((error) => res.status(400).json("Error:", error));
+  try {
+    const users = await User.find();
+    console.log("users:", users);
+    return res.json(users);
+  } catch (err) {
+    res.json("Error:" + err);
+  }
 });
 
 // POST NEW USER
 router.route("/add").post(async (req, res) => {
-  const username = req.body.username;
-  const email = req.body.email;
-  const password = req.body.password;
+  try {
+    const username = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
 
-  const newUser = new User({
-    username: username,
-    email: email,
-    password: password,
-  });
-
-  newUser
-    .save()
-    .then(() => {
-      res.json("User added!");
-    })
-    .catch((error) => res.status(400).json("Error:", error));
-
-  console.log("New user:", newUser);
-  res.send("user added!");
+    const newUser = new User({
+      username: username,
+      email: email,
+      password: password,
+    });
+    await newUser.save();
+    res.json("User added!");
+  } catch (error) {
+    res.status(400).json("error:" + error);
+  }
 });
 
 module.exports = router;
