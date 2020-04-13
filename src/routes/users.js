@@ -15,24 +15,24 @@ router.route("/").get(async (req, res) => {
   }
 });
 
-// POST NEW USER - NOT IN USE BECAUSE OF REGISTER ROUTE
-router.post("/add", verify, async (req, res) => {
-  try {
-    const username = req.body.username;
-    const email = req.body.email;
-    const password = req.body.password;
+// // POST NEW USER - NOT IN USE BECAUSE OF REGISTER ROUTE
+// router.post("/add", verify, async (req, res) => {
+//   try {
+//     const username = req.body.username;
+//     const email = req.body.email;
+//     const password = req.body.password;
 
-    const newUser = new User({
-      username: username,
-      email: email,
-      password: password,
-    });
-    await newUser.save();
-    res.json("User added!");
-  } catch (error) {
-    res.status(400).json("error:" + error);
-  }
-});
+//     const newUser = new User({
+//       username: username,
+//       email: email,
+//       password: password,
+//     });
+//     await newUser.save();
+//     res.json("User added!");
+//   } catch (error) {
+//     res.status(400).json("error:" + error);
+//   }
+// });
 
 // CREATE NEW TODO BASED ON USER ID
 router.post("/todo", verify, async (req, res) => {

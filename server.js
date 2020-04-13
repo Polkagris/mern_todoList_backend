@@ -24,12 +24,10 @@ mongoose.connect(
 const usersRouter = require("./src/routes/users");
 const todosRouter = require("./src/routes/todos");
 const authRouter = require("./src/routes/auth");
-// const newTodoRouter = require("./src/routes/newTodo");
 
 app.use("/users", usersRouter);
 app.use("/todos", todosRouter);
 app.use("/user", authRouter);
-// app.use("/newtodo", newTodoRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running smoothly on port ${PORT}`);
